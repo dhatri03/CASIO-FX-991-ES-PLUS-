@@ -1,0 +1,253 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Casio fx-991ES PLUS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.0.1/math.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="calculator-container">
+
+        <div class="brand-section">
+            <span class="casio-logo">CASIO</span>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <span class="model-name">fx-991ES PLUS</span>
+                <span style="font-size:0.6rem; color:#aaa;">2nd EDITION</span>
+            </div>
+            <span style="font-size:0.7rem; font-style:italic; color:#008080;">NATURAL-V.P.A.M.</span>
+            <div class="solar-panel"></div>
+        </div>
+
+        <div class="display-screen">
+            <div class="indicators">
+                <span id="shift-ind" class="ind">S</span>
+                <span id="alpha-ind" class="ind">A</span>
+                <span id="mode-ind" class="ind">COMP</span>
+                <span id="angle-ind" class="ind">DEG</span>
+            </div>
+            <div class="display-main" id="display-expression"></div>
+            <div class="display-result" id="display-result">0</div>
+        </div>
+
+        <div class="calculator-body">
+            <!-- Control Pad -->
+            <div class="control-pad">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div class="function-keys-row-1"
+                        style="flex-grow:1; display:flex; justify-content:space-between; padding:0 10px;">
+                        <button class="btn-small silver shift-key" data-func="SHIFT">SHIFT</button>
+                        <button class="btn-small silver alpha-key" data-func="ALPHA">ALPHA</button>
+                        <div class="replay-btn">
+                            <button class="replay-up" data-key="UP">▲</button>
+                            <button class="replay-down" data-key="DOWN">▼</button>
+                            <button class="replay-left" data-key="LEFT">◀</button>
+                            <button class="replay-right" data-key="RIGHT">▶</button>
+                        </div>
+                        <button class="btn-small silver mode-key" data-func="MODE">MODE</button>
+                        <button class="btn-small silver on-key" data-func="ON">ON</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Keypad -->
+            <div class="main-keypad">
+                <!-- Scientific Section (Top Half of keys) -->
+                <!-- Layout: 6 cols roughly -->
+                <div class="scientific-section">
+                    <button class="btn-black" data-val="calc">CALC</button>
+                    <button class="btn-black" data-val="integral">∫dx</button>
+                    <button class="btn-black" data-val="recip">x⁻¹</button>
+                    <button class="btn-black" data-val="log">log</button>
+                    <button class="btn-black" data-val="ln">ln</button>
+                    <button class="btn-black" data-val="pwr">x□</button>
+
+                    <button class="btn-black" data-val="frac">a/b</button>
+                    <button class="btn-black" data-val="sqrt">√</button>
+                    <button class="btn-black" data-val="square">x²</button>
+                    <button class="btn-black" data-val="cube">x³</button>
+                    <button class="btn-black" data-val="hyp">hyp</button>
+                    <button class="btn-black" data-val="abs">Abs</button>
+
+                    <button class="btn-black" data-val="(-)">(-)</button>
+                    <button class="btn-black" data-val="deg">°'"</button>
+                    <button class="btn-black" data-val="sto">STO</button>
+                    <button class="btn-black" data-val="sin">sin</button>
+                    <button class="btn-black" data-val="cos">cos</button>
+                    <button class="btn-black" data-val="tan">tan</button>
+
+                    <button class="btn-black" data-val="rcl">RCL</button>
+                    <button class="btn-black" data-val="eng">ENG</button>
+                    <button class="btn-black" data-val="(">(</button>
+                    <button class="btn-black" data-val=")">)</button>
+                    <button class="btn-black" data-val="sd">S⇔D</button>
+                    <button class="btn-black" data-val="m+">M+</button>
+                </div>
+
+                <!-- Number Section -->
+                <div class="number-section">
+                    <!-- Row 1 -->
+                    <button class="btn-num" data-val="7">7</button>
+                    <button class="btn-num" data-val="8">8</button>
+                    <button class="btn-num" data-val="9">9</button>
+                    <button class="btn-op coral" data-val="DEL">DEL</button>
+                    <button class="btn-op coral" data-val="AC">AC</button>
+
+                    <!-- Row 2 -->
+                    <button class="btn-num" data-val="4">4</button>
+                    <button class="btn-num" data-val="5">5</button>
+                    <button class="btn-num" data-val="6">6</button>
+                    <button class="btn-op" data-val="*">×</button>
+                    <button class="btn-op" data-val="/">÷</button>
+
+                    <!-- Row 3 -->
+                    <button class="btn-num" data-val="1">1</button>
+                    <button class="btn-num" data-val="2">2</button>
+                    <button class="btn-num" data-val="3">3</button>
+                    <button class="btn-op" data-val="+">+</button>
+                    <button class="btn-op" data-val="-">-</button>
+
+                    <!-- Row 4 -->
+                    <button class="btn-num" data-val="0">0</button>
+                    <button class="btn-num" data-val=".">.</button>
+                    <button class="btn-num" data-val="exp">x10ˣ</button>
+                    <button class="btn-num" data-val="ans">Ans</button>
+                    <button class="btn-op" data-val="=">=</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mode Menu -->
+        <div id="mode-menu" class="mode-menu hidden">
+            <div class="mode-header">MODE</div>
+            <div class="mode-grid">
+                <button data-mode="COMP">1:COMP</button>
+                <button data-mode="CMPLX">2:CMPLX</button>
+                <button data-mode="STAT">3:STAT</button>
+                <button data-mode="BASE-N">4:BASE-N</button>
+                <button data-mode="EQN">5:EQN</button>
+                <button data-mode="MATRIX">6:MATRIX</button>
+                <button data-mode="TABLE">7:TABLE</button>
+                <button data-mode="VECTOR">8:VECTOR</button>
+            </div>
+        </div>
+
+        <!-- Setup Menu (Shift + Mode) -->
+        <div id="setup-menu" class="mode-menu hidden" style="background: rgba(0,0,0,0.95); z-index:20;">
+            <div class="mode-header">SETUP</div>
+            <div class="mode-grid">
+                <button data-setup="math">1:MthIO</button>
+                <button data-setup="line">2:LineIO</button>
+                <button data-setup="deg">3:Deg</button>
+                <button data-setup="rad">4:Rad</button>
+                <button data-setup="gra">5:Gra</button>
+            </div>
+        </div>
+
+        <!-- Matrix Wizard -->
+        <div id="matrix-wizard" class="matrix-wizard hidden">
+            <div class="wizard-header">MATRIX</div>
+            <div class="wizard-step" id="step-mat-sel">
+                <p>Select Matrix:</p>
+                <div class="mode-grid">
+                    <button data-mat="A">1: MatA</button>
+                    <button data-mat="B">2: MatB</button>
+                    <button data-mat="C">3: MatC</button>
+                </div>
+            </div>
+            <div class="wizard-step hidden" id="step-mat-dim">
+                <p>Dimensions:</p>
+                <div class="mode-grid">
+                    <button data-dim="2x2">1: 2x2</button>
+                    <button data-dim="3x3">2: 3x3</button>
+                    <button data-dim="3x1">3: 3x1</button>
+                    <button data-dim="custom">4: Custom</button>
+                </div>
+            </div>
+            <div class="wizard-step hidden" id="step-mat-inp">
+                <p>Input Elements:</p>
+                <div id="matrix-input-grid" class="matrix-input-grid"></div>
+                <button id="btn-save-matrix" style="width:100%; border:1px solid #008080;">AC</button>
+            </div>
+        </div>
+
+        <!-- Vector Wizard -->
+        <div id="vector-wizard" class="matrix-wizard hidden">
+            <div class="wizard-header">VECTOR</div>
+            <div class="wizard-step" id="step-vect-sel">
+                <p>Select Vector:</p>
+                <div class="mode-grid">
+                    <button data-vect="A">1: VctA</button>
+                    <button data-vect="B">2: VctB</button>
+                    <button data-vect="C">3: VctC</button>
+                </div>
+            </div>
+            <div class="wizard-step hidden" id="step-vect-dim">
+                <p>Dimensions:</p>
+                <div class="mode-grid">
+                    <button data-dim="2">1: 2-dim</button>
+                    <button data-dim="3">2: 3-dim</button>
+                </div>
+            </div>
+            <div class="wizard-step hidden" id="step-vect-inp">
+                <p>Input Elements:</p>
+                <div id="vector-input-grid" class="matrix-input-grid"></div>
+                <button id="btn-save-vector" style="width:100%; border:1px solid #008080;">AC</button>
+            </div>
+        </div>
+
+        <!-- Equation Wizard -->
+        <div id="eqn-wizard" class="matrix-wizard hidden">
+            <div class="wizard-header">EQUATION</div>
+            <div class="wizard-step" id="step-eqn-type">
+                <p>Select Type:</p>
+                <button data-type="2var" style="width:100%; margin-bottom:5px;">1: anX + bnY = bn</button>
+                <button data-type="3var" style="width:100%; margin-bottom:5px;">2: anX + bnY + cnZ = dn</button>
+                <button data-type="quad" style="width:100%; margin-bottom:5px;">3: ax² + bx + c = 0</button>
+                <button data-type="cubic" style="width:100%; margin-bottom:5px;">4: ax³ + bx² + cx + d = 0</button>
+            </div>
+            <div class="wizard-step hidden" id="step-eqn-inp">
+                <div id="eqn-input-grid" class="matrix-input-grid"></div>
+                <button id="btn-solve-eqn" style="width:100%;">SOLVE</button>
+            </div>
+            <div class="wizard-step hidden" id="step-eqn-res">
+                <p>Result:</p>
+                <div id="eqn-res-disp" style="color:yellow; font-size:1.2rem; white-space:pre-wrap;"></div>
+                <button id="btn-eqn-back" style="width:100%; margin-top:10px;">Back</button>
+            </div>
+        </div>
+
+        <!-- Table Wizard -->
+        <div id="table-wizard" class="matrix-wizard hidden">
+            <div class="wizard-header">TABLE</div>
+            <div class="wizard-step" id="step-table-input">
+                <label>f(X) = <input id="table-func" type="text" style="width:100%; color:black;"></label>
+                <label>Start: <input id="table-start" type="number" value="1" style="width:100%; color:black;"></label>
+                <label>End: <input id="table-end" type="number" value="5" style="width:100%; color:black;"></label>
+                <label>Step: <input id="table-step" type="number" value="1" style="width:100%; color:black;"></label>
+                <button id="btn-gen-table" style="width:100%; margin-top:10px;">GENERATE</button>
+            </div>
+            <div class="wizard-step hidden" id="step-table-res">
+                <div id="table-res-disp" class="matrix-input-grid"
+                    style="grid-template-columns:1fr 1fr; background:#fff; color:#000;"></div>
+                <button id="btn-table-back" style="width:100%;">AC</button>
+            </div>
+        </div>
+
+        <!-- Integration/Diff Wizard -->
+        <div id="calc-wizard" class="matrix-wizard hidden">
+            <div class="wizard-header">CALCULATION</div>
+            <!-- Generic wizard reuse for specific complex inputs if needed -->
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
